@@ -2,8 +2,7 @@
 import numpy as np
 import kernel
 import matplotlib.pyplot as plt
-from math import log
-from sklearn.metrics import log_loss
+
 
 
 
