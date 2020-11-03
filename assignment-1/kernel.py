@@ -73,7 +73,7 @@ def softmax_backward(Y, cache):
 
     return dZ
 
-def linear_activation_forward(A_prev, W, b, kernel):
+def forward_propagation(A_prev, W, b, kernel):
     if kernel == "sigmoid":
 
         Z, linear_cache = linear_forward(A_prev, W, b)
@@ -96,7 +96,7 @@ def linear_activation_forward(A_prev, W, b, kernel):
     return A, cache
 
 
-def linear_activation_backward(dA, cache, kernel):
+def backward_propagation(dA, cache, kernel):
     linear_cache, activation_cache = cache
 
     if kernel == "relu":
