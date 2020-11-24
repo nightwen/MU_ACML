@@ -3,10 +3,12 @@ import numpy as np
 from collections import defaultdict
 import sys
 import matplotlib.pyplot as plt
+import seaborn as sns
 import gym
 import random
 slow = True
-
+sns.set()
+np.random.seed(0)
 #env = gym.make("MountainCar-v0")
 
 gym.envs.register(
@@ -15,7 +17,6 @@ gym.envs.register(
     max_episode_steps=100000,      # MountainCar-v0 uses 200
 )
 env = gym.make('MountainCarMyEasyVersion-v0')
-#env = gym.make('MountainCar-v0')
 episode_nums=1000
 n_states = 100
 epsilon = 0.8
@@ -41,17 +42,29 @@ def policy_function(Q,x,y):
     return action
 
 
-def greedy_policy(Q,state):
-    best_action = np.argmax(Q[state])
-    return best_action
+def plot_state(Q):
+    Heat_Q = np.sum(Q, axis=2)
+    f, ax = plt.subplots(figsize=Heat_Q.shape)
+    ax.set_xlabel("state")
+    ax.set_ylabel("state")
+    ax.set_title("heat map of title")
+    ax = sns.heatmap(Heat_Q)
+    plt.show()
 
 
-def plot(x,y):
-    size = len(x)
-    x = [x[i] for i in range(size) if i%10==0 ]
-    y = [y[i] for i in range(size) if i%10==0 ]
-    plt.plot(x, y, 'ro-')
-    plt.ylim(-300, 0)
+def evaluate_performance(repeat_time, step_length = 10):
+    average_rewards =[]
+    for i in range(repeat_time):
+        _,rewards = Q_learning(env,episode_nums)
+        if len(average_rewards)==0:
+            average_rewards=np.array(rewards)
+        else:
+            average_rewards=average_rewards+np.array(rewards)
+    average_rewards=average_rewards*1.0/10
+    performance = []
+    for i in range(0, len(average_rewards), step_length):
+        performance.append(average_rewards[i:i + step_length])
+    plt.plot(range(performance),performance)
     plt.show()
 
 
@@ -70,7 +83,7 @@ def Q_learning(env,episode_nums,discount_factor=1.0, alpha=0.5,epsilon=0.1):
             sys.stdout.flush()
 
 
-        eta = max(min_lr, initial_lr * (0.85 ** (i_episode // 100)))
+        eta = max(min_lr, initial_lr * (0.5 ** (i_episode // 100)))
 
         sum_reward=0.0
 
@@ -86,17 +99,12 @@ def Q_learning(env,episode_nums,discount_factor=1.0, alpha=0.5,epsilon=0.1):
             Q[x][y][action] = Q[x][y][action] + eta * (
                         reward + discount_factor * np.max(Q[x1][y1]) - Q[x][y][action])
         rewards.append(sum_reward)
-    plot(range(1,1+episode_nums), rewards)
+    plt.plot(range(len(rewards)), rewards)
+    plt.show()
     return Q,rewards
 
-Q,rewards = Q_learning(env,episode_nums)
+# Q,rewards = Q_learning(env,episode_nums)
+# plot_state(Q)
 
-average_rewards =[]
-for i in range(10):
-    _,rewards = Q_learning(env,episode_nums)
-    if len(average_rewards)==0:
-        average_rewards=np.array(rewards)
-    else:
-        average_rewards=average_rewards+np.array(rewards)
-average_rewards=average_rewards*1.0/10
-plot(range(1,1+episode_nums),average_rewards)
+evaluate_performance(10)
+
