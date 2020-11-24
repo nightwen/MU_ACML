@@ -86,7 +86,7 @@ def Q_learning(env,episode_nums,discount_factor=1.0, alpha=0.5,epsilon=0.1):
             Q[x][y][action] = Q[x][y][action] + eta * (
                         reward + discount_factor * np.max(Q[x1][y1]) - Q[x][y][action])
         rewards.append(sum_reward)
-
+    plot(range(1,1+episode_nums), rewards)
     return Q,rewards
 
 Q,rewards = Q_learning(env,episode_nums)
