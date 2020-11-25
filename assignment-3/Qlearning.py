@@ -101,9 +101,53 @@ def Q_learning(env, episode_nums, discount_factor, epsilon, n_states, params):
     return Q, rewards
 
 
+def Sarsa(env, episode_nums, discount_factor=1.0, alpha=0.5, epsilon=0.1):
+    Q = np.zeros((n_states, n_states, 3))  # three actions here
+    rewards = []
+
+    for i_episode in range(1, 1 + episode_nums):
+        observation = env.reset()
+
+        if i_episode % 100 == 0:
+            print("\rEpisode {}/{}.".format(i_episode, episode_nums))
+            sys.stdout.flush()
+
+        eta = max(min_lr, initial_lr * (0.5 ** (i_episode // 100)))
+
+        x, y = divide_state(
+            observation, env.observation_space.high, env.observation_space.low)
+
+        action = policy_function(Q, x, y)
+
+        sum_reward = 0.0
+
+        done = False
+
+        while not done:
+            observation, reward, done, other = env.step(action)
+            sum_reward += reward
+            if done:
+                Q[x][y][action] = Q[x][y][action] + eta * \
+                    (reward + discount_factor * 0.0 - Q[x][y][action])
+                break
+            else:
+                x1, y1 = divide_state(
+                    observation, env.observation_space.high, env.observation_space.low)
+                new_action = policy_function(Q, x1, y1)
+                Q[x][y][action] = Q[x][y][action]+eta * \
+                    (reward+discount_factor*Q[x1][y1]
+                     [new_action]-Q[x][y][action])
+                Q[x][y] = Q[x1][y1]
+                action = new_action
+        rewards.append(sum_reward)
+    plt.plot(range(len(rewards)), rewards)
+    plt.show()
+    return Q, rewards
+
+
 evaluate_performance(10, 1000)
 
-for episode_nums in [10, 100, 1000]: 
+for episode_nums in [10, 100, 1000]:
     for n_states in [10, 100]:
         for epsilon in [0.5, 0.1, 0.9]:
             for discount_factor in [1.0, 0.9, 0.8]:
@@ -113,4 +157,3 @@ for episode_nums in [10, 100, 1000]:
                 Q, rewards = Q_learning(
                     env, episode_nums, discount_factor, epsilon, n_states, params)
                 plot_state(Q, params)
-
