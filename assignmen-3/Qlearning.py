@@ -68,7 +68,7 @@ def evaluate_performance(repeat_time, step_length = 10):
     plt.show()
 
 
-def Q_learning(env,episode_nums,discount_factor=1.0, alpha=0.5,epsilon=0.1):
+def Q_learning(env,episode_nums,discount_factor=1.0, alpha=0.5,epsilon=0.1, eta = 1):
 
     Q = np.zeros((n_states, n_states, 3)) # three actions here
     rewards=[]
@@ -82,8 +82,8 @@ def Q_learning(env,episode_nums,discount_factor=1.0, alpha=0.5,epsilon=0.1):
             print("\rEpisode {}/{}.".format(i_episode, episode_nums))
             sys.stdout.flush()
 
-
         eta = max(min_lr, initial_lr * (0.5 ** (i_episode // 100)))
+
 
         sum_reward=0.0
 
@@ -103,8 +103,52 @@ def Q_learning(env,episode_nums,discount_factor=1.0, alpha=0.5,epsilon=0.1):
     plt.show()
     return Q,rewards
 
-# Q,rewards = Q_learning(env,episode_nums)
-# plot_state(Q)
+def Sarsa(env,episode_nums,discount_factor=1.0, alpha=0.5,epsilon=0.1):
+    Q = np.zeros((n_states, n_states, 3))  # three actions here
+    rewards = []
 
-evaluate_performance(10)
+    for i_episode in range(1, 1 + episode_nums):
+        observation = env.reset()
+
+        if i_episode % 100 == 0:
+            print("\rEpisode {}/{}.".format(i_episode, episode_nums))
+            sys.stdout.flush()
+
+        eta = max(min_lr, initial_lr * (0.5 ** (i_episode // 100)))
+
+        x, y = divide_state(observation, env.observation_space.high, env.observation_space.low)
+
+        action = policy_function(Q, x, y)
+
+        sum_reward = 0.0
+
+        done = False
+
+        while not done:
+            observation, reward, done, other = env.step(action)
+            sum_reward += reward
+            if done:
+                Q[x][y][action] = Q[x][y][action] + eta * (reward + discount_factor * 0.0 - Q[x][y][action])
+                break
+            else:
+                x1, y1 = divide_state(observation, env.observation_space.high, env.observation_space.low)
+                new_action = policy_function(Q, x1, y1)
+                Q[x][y][action]=Q[x][y][action]+eta*(reward+discount_factor*Q[x1][y1][new_action]-Q[x][y][action])
+                Q[x][y] = Q[x1][y1]
+                action = new_action
+        rewards.append(sum_reward)
+    plt.plot(range(len(rewards)), rewards)
+    plt.show()
+    return Q, rewards
+
+
+
+Q1,rewards1 = Sarsa(env,episode_nums)
+plot_state(Q1)
+Q,rewards = Q_learning(env,episode_nums)
+plot_state(Q)
+plt.plot(rewards, color='green', label='stable eta')
+plt.plot(rewards1, color='red', label='Sarsa')
+plt.show()
+#evaluate_performance(10)
 
