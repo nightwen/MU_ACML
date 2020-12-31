@@ -1,0 +1,189 @@
+\def\year{2020}\relax
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage{aaai20}  % DO NOT CHANGE THIS
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet} % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{graphicx}  % DO NOT CHANGE THIS
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in}  % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in}  % DO NOT CHANGE THIS
+%\nocopyright
+%PDF Info Is REQUIRED.
+% For /Author, add all authors within the parentheses, separated by commas. No accents or commands.
+% For /Title, add Title in Mixed Case. No accents or commands. Retain the parentheses.
+ \pdfinfo{
+/Title (ACML Paper Review)
+/Author (Pomerenke David, JingYang Zeng)
+} %Leave this	
+% /Title ()
+% Put your actual complete title (no codes, scripts, shortcuts, or LaTeX commands) within the parentheses in mixed case
+% Leave the space between \Title and the beginning parenthesis alone
+% /Author ()
+% Put your actual complete list of authors (no codes, scripts, shortcuts, or LaTeX commands) within the parentheses in mixed case. 
+% Each author should be only by a comma. If the name contains accents, remove them. If there are any LaTeX commands, 
+% remove them. 
+
+% DISALLOWED PACKAGES
+% \usepackage{authblk} -- This package is specifically forbidden
+% \usepackage{balance} -- This package is specifically forbidden
+% \usepackage{caption} -- This package is specifically forbidden
+% \usepackage{color (if used in text)
+% \usepackage{CJK} -- This package is specifically forbidden
+% \usepackage{float} -- This package is specifically forbidden
+% \usepackage{flushend} -- This package is specifically forbidden
+% \usepackage{fontenc} -- This package is specifically forbidden
+% \usepackage{fullpage} -- This package is specifically forbidden
+% \usepackage{geometry} -- This package is specifically forbidden
+% \usepackage{grffile} -- This package is specifically forbidden
+% \usepackage{hyperref} -- This package is specifically forbidden
+% \usepackage{navigator} -- This package is specifically forbidden
+% (or any other package that embeds links such as navigator or hyperref)
+% \indentfirst} -- This package is specifically forbidden
+% \layout} -- This package is specifically forbidden
+% \multicol} -- This package is specifically forbidden
+% \nameref} -- This package is specifically forbidden
+% \natbib} -- This package is specifically forbidden -- use the following workaround:
+% \usepackage{savetrees} -- This package is specifically forbidden
+% \usepackage{setspace} -- This package is specifically forbidden
+% \usepackage{stfloats} -- This package is specifically forbidden
+% \usepackage{tabu} -- This package is specifically forbidden
+% \usepackage{titlesec} -- This package is specifically forbidden
+% \usepackage{tocbibind} -- This package is specifically forbidden
+% \usepackage{ulem} -- This package is specifically forbidden
+% \usepackage{wrapfig} -- This package is specifically forbidden
+% DISALLOWED COMMANDS
+% \nocopyright -- Your paper will not be published if you use this command
+% \addtolength -- This command may not be used
+% \balance -- This command may not be used
+% \baselinestretch -- Your paper will not be published if you use this command
+% \clearpage -- No page breaks of any kind may be used for the final version of your paper
+% \columnsep -- This command may not be used
+% \newpage -- No page breaks of any kind may be used for the final version of your paper
+% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
+% \pagestyle -- This command may not be used
+% \tiny -- This is not an acceptable font size.
+% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
+% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+
+\setcounter{secnumdepth}{0} %May be changed to 1 or 2 if section numbers are desired.
+
+% The file aaai20.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+%
+\setlength\titlebox{2.5in} % If your paper contains an overfull \vbox too high warning at the beginning of the document, use this
+% command to correct it. You may not alter the value below 2.5 in
+\title{Paper Review}
+%Your title must be in mixed case, not sentence case. 
+% That means all verbs (including short verbs like be, is, using,and go), 
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+\author{\\ \Large \textbf{Stochastic Latent Actor-Critic: Deep Reinforcement Learning with a Latent Variable Model} \\ \Large \textbf{}\\ % All authors must be in the same font size and format. Use \Large and \textbf to achieve this result when breaking a line
+\textsuperscript{\rm 1}David Pomerenke, JingYang Zeng\\ %If you have multiple authors and multiple affiliations
+% use superscripts in text and roman font to identify them. For example, Sunil Issar,\textsuperscript{\rm 2} J. Scott Penberthy\textsuperscript{\rm 3} George Ferguson,\textsuperscript{\rm 4} Hans Guesgen\textsuperscript{\rm 5}. Note that the comma should be placed BEFORE the superscript for optimum readability
+Maastricht University\\
+Advanced Concepts in Machine Learning\\
+08.12.2020 % email address must be in roman text type, not monospace or sans serif
+}
+
+\usepackage[style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+
+\begin{document}
+
+\maketitle
+
+%\begin{abstract}
+%We review a prominent NeurIPS paper by researchers from DeepMind and the University of Berkeley, where they introduce their new algorithm, \textit{Stochastic Latent Actor-Critic (SLAC)}. In this paper, the authors show the dominant performance of SLAC. Therefore, besides the critical view in terms of relevance, significance, and other aspects, we review the paper with respect and curiosity.
+%\end{abstract}
+
+\textbf{Reviewed work:}
+
+Lee, A., Nagabandi, A., Abbeel, P., \& Levine, S. (2020). 
+\textit{Stochastic latent actor-critic: Deep reinforcement learning with a latent variable model.}
+Advances in Neural Information Processing Systems, 33.
+
+
+\section{Summary}
+
+Reinforcement learning, that is learning a policy of applicable actions for each state based on  rewards related to the state transitions, is a sort of problem that is especially useful in real-world applications such as robotics. Q-learning is a popular existing model-free technique for reinforcement learning where state transitions and rewards are not learned separately but combined to a single Q-value. The actor-critic algorithm is a variety of Q-learning, where an actor component selects samples based on the current Q-values, and a critic component updates the Q-values based on the temporal-difference error of these samples. A problem of state-of-the-art reinforcement learning algorithms is that they require the manual engineering of a suitable state representation, and otherwise are very slow and and dependent on hyperparameter tuning. The paper addresses this issue by separating the reinforcement learning problem into a \textit{representation learning} component and a \textit{task learning} component. 
+
+For \textbf{task learning}, the paper uses a state-of-the-art technique called soft actor-critic, which is built upon a maximum-entropy reinforcement learning framework. The latter means that the loss function that is minimized also includes a term for the entropy of the policy. This leads to a better exploration of the state space by incentivizing exploration, exploring similarly promising states with similar intensity, and yet ignoring clearly unpromising states.\cite{haarnoja2018soft} Furthermore, soft actor-critic improves upon earlier maximum-entropy approaches, which were using so-called double Q-learning, by instead learning a single “soft” Q-value.\cite{duan2020distributional}
+
+The \textbf{representation learning} component is concerned with encoding the state of a partially observable Markov decision process (POMDP; a formalization suitable to many stochastic real world environments) in a way that makes learning easy for the task learning component. For this purpose, the paper is inspired by variational autoencoders. Autoencoders learn an efficient encoded representation of any kind by training a model with a latent space that is smaller than the original space with the objective of reconstructing the original input. Variational autoencoders improve the robustness of autoencoders by adding noise in the training process. The paper transfers the idea underlying variational autoencoders to the specific problem of learning POMDPs, by using a technique called amortized variational inference. Variational inference is a probabilistic modeling technique where the explicit graphical model of the latent variables is replaced by a deep neural network for the purpose of achieving tractability.\cite{zhang2018advances}
+
+The main contribution of the paper is bringing together the representation learning and task learning components in a unified algorithm. The algorithm produces stunning results in comparison to other state-of-the-art algorithms, especially for more complex image-based reinforcement learning tasks.
+
+\section{Relevance}
+
+The paper is highly relevant to the machine learning community, because it addresses the issue of reinforcement learning for real-world scenarios. Reinforcement learning, in general, is already a suitable representation for many real-world problems, since —unlike labels—, rewards and punishments can often be found in the real world. However,  according to the framing of the authors, reinforcement learning has so far not been directly applicable to many real-world tasks; only when a good representation of the state space is available do reinforcement learning algorithms achieve good results. A good representation may require human effort, as well as additional sensors and additional data preprocessing steps. 
+
+The paradigmatic application domain presented in the paper is for image-based robotic tasks. Here, financial costs could be reduced by replacing multiple specialized sensors by one single camera; and no special image preprocessing would be necessary. The approach is probably also transferable to other automation tasks, although this is not explored in the paper.
+
+Conceptually, the paper transfers the idea behind variational autoencoders to the domain of Q-learning. To this purpose, tools from Bayesian modeling and deep learning are employed. Thus, the reinforcement learning community is introduced to useful concepts from the statistics and deep learning communities.
+
+\section{Significance}
+
+The experimental evaluation of the SLAC algorithm indicates highly significant results: For image-based robotic control tasks from the Deepmind benchmark\cite{tassa2018deepmind}, SLAC performs slightly (but rather insignificantly) better than the best state-of-the-art model-free Q-learning algorithms, both in terms of the speed and the value of the convergence (cf. Figure 3 in the paper). The core strength of the paper is with the OpenAI Gym benchmark\cite{brockman2016openai}, where image-based robotic control tasks have been used as well, but where according to the authors they are more challenging for a number of reasons (cf. p. 7): In the relevant categories of this benchmark, the average return after convergence is up to 4 times higher than for other state-of-the art algorithms (cf. Figure 4 in the paper).
+
+The significance is also reflected in the reception by the research and coding communities: Albeit the paper has only been published this year, it has already been cited 44 times according to Google Scholar at the time of the submission of this review, with 6 highly influential citations according to Semantic Scholar; the implementation has received 94 stars and has been forked 19 times on Github.\footnote{\url{https://github.com/alexlee-gk/slac}} This is a clearly above-average reception, which is probably due to the excellent benchmark results for solving a relatively fundamental machine learning problem.
+
+\section{Novelty}
+
+This paper has general novelty because it is a combination of representation learning and reinforcement Learning. Although the paper claims that the algorithms can deal with high-dimensional input, the core of the algorithm is an off-policy model-free Q-learning algorithm with the combination of representation learning, and the latent layer works as a conjunction. 
+
+Therefore, it is a straightforward idea that if the agent needs to learn with high-dimensional input, it needs to learn some representation to filter the input; but this algorithm provides a very prominent performance. Moreover, after transferring the high-dimensional input to the limiting valid input, they apply the POMDP to learning the remaining problem. Here, POMDP works well but it is a very standard choice, therefore we believe this algorithm is implemented in a normal track. In our view, it’s a successful extension of the off-model  Q-learning algorithm, so we believe this algorithm is a great innovation rather than an invention.
+
+\section{Soundness}
+
+The paper is technically sound. In the Introduction section, the authors introduce the challenge they address, and they mention the bottleneck reinforcement learning problem in the Related Work section. Then, the algorithm comes up after the statement of the bottleneck problem. Besides the technical soundness in the structure, the paper also provides strict math formulae to prove the mechanism of the algorithm. 
+
+These formulae justify the inference and logic in the mechanism: All variables are defined to match the concept in the mechanism, then functions apply the logic of the mechanism so we can make sure the mechanism is perfectly proved in math.  When the formula is introduced, the authors start with some small sections of the algorithm, then combine these small sections together by the mechanism. Meanwhile, the Pseudocode at the side does help us to understand the flow of the SLAC. Therefore, we believe this paper states its contribution in a very technical way.
+
+\section{Evaluation}
+
+This paper set up many experiments and fully evaluates the results of the experiments. They evaluate the SLAC in 8 tasks, four of the tasks are cheetah run, walker walks, ball-in-cup catch, finger spin of the DeepMind Control Suite banchmark\cite{tassa2018deepmind}, the others task are cheetah, walker, ant, and hopper from the OpenAI Gym benchmark\cite{brockman2016openai}. So it is no doubt that SLAC can solve different reinforcement learning problems. Furthermore, in order to prove the priority of SLAC, they compare the performance of SLAC with other successful algorithms such as SAC, DVRL, PlaNet. Therefore, the prior performance of SLAC is exactly confirmed. By watching these charts, I do believe SLAC can converge in earlier epochs and achieve better optimal performance. 
+
+However, the authors make many strong claims, but not all of the claims are fully supported. For example, the authors claim that their approach performs infinite horizon policy optimization, but I don’t find any statement about the infinite horizon policy optimization of SLAC. Therefore, this paper has a great evaluation overall, but there remain some claims that are not fully evaluated.
+
+\section{Clarity}
+
+Most of the paper is clear and straightforward.  When we look through the whole paper, we can understand the main idea of SLAC, and get the notion of the complicated mechanism. However, the paper does have some confusing parts that lack sufficient explanation.
+\begin{itemize}
+    \item The authors claim that their approach does not use the model for prediction, but SLAC does calculate the next action and next latent state in the soft Q-function, and the generative model also considers the possibility of the next action based on the current action. Therefore, the mechanism makes some predictions indeed, hence it would be better if there gives more explanation between the claims and formula about the prediction.
+    \item Another unclear point is we don’t know how the input images x tease out the relevant information into a compact and disentangled representation z. This is a significant point in the latent variable model because the disentangled representation z will decide the performance of the latent actor-critic part, but there should be more explanation about how the disentangled representation z is generated.
+\end{itemize}
+
+Thus, although this paper is sufficiently clear and persuasive, it still has some tiny flaws in clarity.
+
+\section{Detailed Comments}
+
+\begin{itemize}
+    \item One of the comments is about architecture. It would be better to go back to the bottleneck problem in reinforcement learning after experiments and evaluation. Since the addressed problem is high-dimensional observation spaces in reinforcement learning, and we confirm the prior performance of SLAC comparing other algorithms. However, we don't know whether better performance solves the bottleneck problem or not. Therefore, after the experiments, go back to the addressed point and give more interpretation on how SLAC addresses the bottleneck problem would be better in our opinion.
+    \item Some terms relating to existing state-of-the-art methods have not been introduced in sufficient detail; thus, we needed to look up these terms in order to follow the paper. Some of these are: \textit{Control as inference (p. 2), variational inference (p. 2), amortized variational inference (p. 3), evidence lower bounds (p. 4)}. We assume this is due to space constraints.
+    \item In the first paragraph of the Related Work section, 10 citations of prior work on representation learning for reinforcement learning are given. The authors contrast their work in a single and not very clear sentence from all these 10 approaches at once. The problem of representation learning for reinforcement learning seems to be quite fundamental and we would expect that there are already some important achievements in this field, so the authors should engage in more depth with these approaches.
+\end{itemize}
+
+\section{Questions for the authors}
+
+\begin{enumerate}
+    \item Variational autoencoders are mentioned to illustrate the role of amortized variational inference in the SLAC algorithm. Why do the authors not use variational autoencoders themselves?
+    \item When variational autoencoders are applied properly to learning image encodings, human-interpretable visual features are learned. Is the same true for using amortized variational inference? If not, can it be considered a drawback that there is a loss of interpretability in comparison to traditional Q-learning where a suitable encoding is engineered manually?
+\end{enumerate}
+
+
+
+
+% \bigskip
+% \noindent Thank you for reading these instructions carefully. We look forward to receiving your electronic files!
+
+\printbibliography
+
+\end{document}
